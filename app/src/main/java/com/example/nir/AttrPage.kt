@@ -1,10 +1,11 @@
 package com.example.nir
 
+import android.R
 import android.content.Intent
 import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
-import android.media.MediaRecorder
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -103,8 +104,8 @@ class AttrPage : AppCompatActivity() {
 
     fun Audio()
     {
-        val myAudioRecorder = MediaRecorder()
-        myAudioRecorder.setOutputFile(PMT);
+        val music: MediaPlayer = MediaPlayer.create(this@MainActivity, R.raw.PMT)
+        music.start()
     }
 
 }
