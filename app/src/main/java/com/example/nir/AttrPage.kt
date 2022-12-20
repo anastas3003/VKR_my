@@ -69,7 +69,7 @@ class AttrPage : AppCompatActivity() {
 
         fun PMT(view: View) {
 
-        imageView.setImageResource(R.drawable.pmt)
+        imageView.setImageResource(R.drawable.PMT1)
 
 
         var descript: String = ""
@@ -104,8 +104,8 @@ class AttrPage : AppCompatActivity() {
 
     fun Audio()
     {
-        val music: MediaPlayer = MediaPlayer.create(this@MainActivity, R.raw.PMT)
-        music.start()
+        val PMT: MediaPlayer = MediaPlayer.create(this@AttrPage, R.raw.PMT)
+        PMT.start()
     }
 
 }
