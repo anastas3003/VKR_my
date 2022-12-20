@@ -21,6 +21,8 @@ class MainPage : AppCompatActivity() {
     }
 
 
+
+
     fun Museums(view: View)
     {
         val m = Intent(this, MuseumsPage::class.java)

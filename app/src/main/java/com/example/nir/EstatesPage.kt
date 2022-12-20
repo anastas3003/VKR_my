@@ -16,7 +16,7 @@ class EstatesPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_estates_page)
-        textView3 = findViewById(R.id.textView)
+        textView3 = findViewById(R.id.textView3)
 
     }
 

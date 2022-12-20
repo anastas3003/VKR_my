@@ -20,7 +20,7 @@ class DatabaseHelper(context: Context) :
     fun updateDataBase() {
         if (mNeedUpdate) {
             val dbFile = File(DB_PATH + DB_NAME)
-            if (dbFile.exists()) dbFile.delete()
+            if (dbFile.exists()) //dbFile.delete()
             copyDataBase()
             mNeedUpdate = false
         }
@@ -47,7 +47,7 @@ class DatabaseHelper(context: Context) :
     private fun copyDBFile() {
         val mInput: InputStream = mContext.assets.open(DB_NAME)
         val mOutput: OutputStream = FileOutputStream(DB_PATH + DB_NAME)
-        val mBuffer = ByteArray(1024)
+        val mBuffer = ByteArray(2048)
         var mLength: Int
         while (mInput.read(mBuffer).also { mLength = it } > 0) mOutput.write(mBuffer, 0, mLength)
         mOutput.flush()
@@ -75,7 +75,7 @@ class DatabaseHelper(context: Context) :
 
     companion object {
         private const val DB_NAME = "ReGo.db"
-        private var DB_PATH = ""
+        private var DB_PATH = "C:/Users/Acer/Desktop"
         private const val DB_VERSION = 1
     }
 
