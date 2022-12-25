@@ -76,7 +76,7 @@ class DatabaseHelper(context: Context) :
     companion object {
         private const val DB_NAME = "ReGo.db"
         private var DB_PATH = "C:/Users/Acer/Desktop"
-        private const val DB_VERSION = 2
+        private const val DB_VERSION = 3
     }
 
     init {

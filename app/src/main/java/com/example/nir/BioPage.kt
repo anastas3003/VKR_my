@@ -86,7 +86,7 @@ class BioPage : AppCompatActivity() {
             val ColumnIndex = cursor.getColumnIndex("bio_des")
 
             while (!cursor.isAfterLast()) {
-            descript += cursor.getString(1)
+            descript += cursor.getString(ColumnIndex)
             cursor.moveToNext()
 
         }
@@ -105,7 +105,7 @@ class BioPage : AppCompatActivity() {
         val ColumnIndex2 = cursor2.getColumnIndex("bio_name")
 
         while (!cursor2.isAfterLast()) {
-            descript2 += cursor2.getString(1)
+            descript2 += cursor2.getString(ColumnIndex2)
             cursor2.moveToNext()
 
         }
