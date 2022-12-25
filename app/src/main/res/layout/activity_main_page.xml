@@ -184,7 +184,7 @@
         android:backgroundTint="#BAFEA2"
         android:fontFamily="@font/literata_bold"
         android:onClick="Lang"
-        android:text="RU/EG"
+        android:text="RU/EN"
         android:textColor="#013EB5"
         android:textSize="17sp"
         app:cornerRadius="20dp"

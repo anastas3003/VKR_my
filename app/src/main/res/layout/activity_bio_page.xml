@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    tools:context=".AttrPage">
+    android:background="#FFFFFF">
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="154dp"
+        android:layout_height="58dp"
+        android:backgroundTint="#BAFEA2"
+        android:fontFamily="@font/literata_bold"
+        android:onClick="Attr"
+        android:text="Назад"
+        android:textColor="#013EB5"
+        android:textSize="17sp"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.963" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="422dp"
+        android:layout_height="240dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/museum1" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.259"
+        app:srcCompat="@drawable/free_icon_heart_simple_shape_silhouette_32557_2" />
 
     <TextView
-        android:id="@+id/textView16"
+        android:id="@+id/textView"
         android:layout_width="344dp"
         android:layout_height="50dp"
         android:textAlignment="center"
@@ -18,55 +58,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.368" />
-
-    <Button
-        android:id="@+id/button12"
-        android:layout_width="154dp"
-        android:layout_height="58dp"
-        android:backgroundTint="#BAFEA2"
-        android:fontFamily="@font/literata_bold"
-        android:onClick="Main"
-        android:text="Назад"
-        android:textColor="#013EB5"
-        android:textSize="17sp"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView7"
-        app:layout_constraintVertical_bias="0.963" />
-
-    <Button
-        android:id="@+id/button11"
-        android:layout_width="184dp"
-        android:layout_height="58dp"
-        android:backgroundTint="#BAFEA2"
-        android:fontFamily="@font/literata_bold"
-        android:onClick="Bio"
-        android:text="Биография"
-        android:textColor="#013EB5"
-        android:textSize="17sp"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView7"
-        app:layout_constraintVertical_bias="0.852" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="344dp"
-        android:layout_height="200dp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.683"
-        app:layout_marginBaseline="274dp" />
 
     <SeekBar
         android:id="@+id/seekBar2"
@@ -80,10 +71,10 @@
         app:layout_constraintVertical_bias="0.438" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/imageView3"
         android:layout_width="53dp"
         android:layout_height="63dp"
-        android:onClick="Audio"
+        android:onClick="Audio2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"
@@ -92,28 +83,16 @@
         app:layout_constraintVertical_bias="0.449"
         app:srcCompat="@drawable/volume_1" />
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="422dp"
-        android:layout_height="240dp"
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="344dp"
+        android:layout_height="290dp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/museum1" />
-
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.259"
-        app:srcCompat="@drawable/free_icon_heart_simple_shape_silhouette_32557_2" />
-
+        app:layout_constraintVertical_bias="0.823"
+        app:layout_marginBaseline="274dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

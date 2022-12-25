@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NIR"
         tools:targetApi="31">
+
+        <activity
+            android:name=".BioPage"
+            android:exported="false" />
         <activity
             android:name=".AttrPage"
             android:exported="false" />

@@ -16,4 +16,11 @@ class PlacePage : AppCompatActivity() {
         val main = Intent(this, MainPage::class.java)
         startActivity(main);
     }
+
+    fun Attr(view: View)
+    {
+        val attr = Intent(this, AttrPage::class.java)
+        startActivity(attr)
+
+    }
 }
