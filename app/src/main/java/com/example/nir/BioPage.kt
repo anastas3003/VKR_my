@@ -78,7 +78,6 @@ class BioPage : AppCompatActivity() {
 
         imageView.setImageResource(R.drawable.mtbio)
 
-
         var descript: String = ""
             val cursor: Cursor = mDb!!.rawQuery("SELECT * FROM Bio WHERE bio_id = 211", null)
 
@@ -88,7 +87,6 @@ class BioPage : AppCompatActivity() {
             while (!cursor.isAfterLast()) {
             descript += cursor.getString(ColumnIndex)
             cursor.moveToNext()
-
         }
         cursor.close();
 
@@ -99,7 +97,7 @@ class BioPage : AppCompatActivity() {
     fun name(view: View) {
 
         var descript2: String = ""
-        val cursor2: Cursor = mDb!!.rawQuery("SELECT * FROM Bio WHERE bio_id = 212", null)
+        val cursor2: Cursor = mDb!!.rawQuery("SELECT * FROM Bio WHERE bio_id = 211", null)
 
         cursor2.moveToFirst()
         val ColumnIndex2 = cursor2.getColumnIndex("bio_name")

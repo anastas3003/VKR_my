@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="344dp"
+        android:layout_height="300dp"
+        android:allowUndo="false"
+        android:autoText="false"
+        android:textColor="#013EB5"
+        android:textIsSelectable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.823"
+        app:layout_marginBaseline="305dp" />
 
     <Button
         android:id="@+id/button10"
@@ -33,7 +51,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/museum1" />
+        app:srcCompat="@drawable/mtbio" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -49,10 +67,12 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="344dp"
-        android:layout_height="50dp"
+        android:layout_width="345dp"
+        android:layout_height="54dp"
+        android:fontFamily="@font/literata_bold"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="#013EB5"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,16 +103,4 @@
         app:layout_constraintVertical_bias="0.449"
         app:srcCompat="@drawable/volume_1" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="344dp"
-        android:layout_height="290dp"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.823"
-        app:layout_marginBaseline="274dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
