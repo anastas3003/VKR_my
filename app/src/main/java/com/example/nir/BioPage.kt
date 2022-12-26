@@ -97,7 +97,7 @@ class BioPage : AppCompatActivity() {
     fun name(view: View) {
 
         var descript2: String = ""
-        val cursor2: Cursor = mDb!!.rawQuery("SELECT * FROM Bio WHERE bio_id = 211", null)
+        val cursor2: Cursor = mDb!!.rawQuery("SELECT * FROM Bio WHERE bio_id = 21", null)
 
         cursor2.moveToFirst()
         val ColumnIndex2 = cursor2.getColumnIndex("bio_name")
