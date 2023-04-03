@@ -14,7 +14,7 @@
         android:fontFamily="@font/literata_bold"
         android:textAlignment="center"
         android:textColor="#013EB5"
-        android:textSize="16sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
