@@ -118,4 +118,9 @@ class AttrPage : AppCompatActivity() {
         audio.start()
     }
 
+    fun Place(view: View)
+    {
+
+    }
+
 }

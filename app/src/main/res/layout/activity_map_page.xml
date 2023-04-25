@@ -6,4 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MapPage">
 
+    <com.yandex.mapkit.mapview.MapView
+        android:id="@+id/mapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" >
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.yandex.mapkit.mapview.MapView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

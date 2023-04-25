@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import android.database.SQLException;
-import com.yandex.mapkit.MapKitFactory
+//import com.yandex.mapkit.MapKitFactory
 import java.io.IOException;
 
 
@@ -19,8 +19,6 @@ class MainPage : AppCompatActivity() {
         setContentView(R.layout.activity_main_page)
         textView2 = findViewById(R.id.textView2)
     }
-
-
 
 
     fun Museums(view: View)
@@ -71,8 +69,10 @@ class MainPage : AppCompatActivity() {
         startActivity(pl);
     }
 
-    fun Lang(view: View)
+    fun Map(view: View)
     {
+        val map = Intent(this, MapPage::class.java)
+        startActivity(map);
     }
 
 
