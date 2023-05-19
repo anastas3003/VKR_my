@@ -8,19 +8,20 @@
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="344dp"
-        android:layout_height="300dp"
+        android:layout_width="327dp"
+        android:layout_height="283dp"
         android:allowUndo="false"
+        android:scrollbars="vertical"
         android:textColor="#013EB5"
         android:textIsSelectable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.823"
-        app:layout_marginBaseline="305dp" />
+        app:layout_constraintVertical_bias="0.795"
+        app:layout_marginBaseline="305dp"
+        tools:ignore="Deprecated" />
 
     <Button
         android:id="@+id/button10"
@@ -28,7 +29,6 @@
         android:layout_height="58dp"
         android:backgroundTint="#D3FAFF"
         android:fontFamily="@font/literata_bold"
-        android:onClick="Attr"
         android:text="Назад"
         android:textColor="#013EB5"
         android:textSize="17sp"
@@ -42,8 +42,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="422dp"
-        android:layout_height="240dp"
+        android:layout_width="421dp"
+        android:layout_height="237dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
@@ -79,27 +79,37 @@
         app:layout_constraintVertical_bias="0.368" />
 
     <SeekBar
-        android:id="@+id/seekBar2"
-        android:layout_width="321dp"
-        android:layout_height="48dp"
+        android:id="@+id/seekBar1"
+        android:layout_width="283dp"
+        android:layout_height="51dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.731"
+        app:layout_constraintHorizontal_bias="0.789"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438" />
+        app:layout_constraintVertical_bias="0.432" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="53dp"
-        android:layout_height="63dp"
-        android:onClick="Audio2"
+    <LinearLayout
+        android:layout_width="67dp"
+        android:layout_height="57dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.449"
-        app:srcCompat="@drawable/volume_1" />
+        app:layout_constraintVertical_bias="0.427"
+        tools:ignore="MissingConstraints">
+
+
+        <ImageButton
+            android:id="@+id/play"
+            android:layout_width="51dp"
+            android:layout_height="50dp"
+            android:background="@drawable/b_bgr"
+            android:src="@drawable/ic_baseline_play_arrow_24" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

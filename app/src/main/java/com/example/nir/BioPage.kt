@@ -6,10 +6,10 @@ import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
+import android.text.method.ScrollingMovementMethod
 import android.view.View
-import android.widget.ImageView
-import android.widget.SeekBar
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import java.io.IOException
 
@@ -18,22 +18,27 @@ class BioPage : AppCompatActivity() {
     private lateinit var textView: TextView
     private lateinit var textView6: TextView
     private lateinit var imageView: ImageView
-    private lateinit var imageView3: ImageView
     private lateinit var seekBar2: SeekBar
-
+    private lateinit var imageButton: ImageButton
+    private lateinit var button: Button
+    private lateinit var runnable: Runnable
+    private var handler = Handler()
 
     // Переменная для работы с БД
     private var mDBHelper: DatabaseHelper? = null
     private var mDb: SQLiteDatabase? = null
 
+    var mMediaPlayer: MediaPlayer? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(com.example.nir.R.layout.activity_bio_page)
         imageView = findViewById(R.id.imageView)
-        imageView3 = findViewById(R.id.imageView3)
         textView = findViewById(R.id.textView)
         textView6 = findViewById(R.id.textView6)
-        seekBar2 = findViewById(R.id.seekBar2)
+        seekBar2 = findViewById(R.id.seekBar1)
+        imageButton = findViewById(R.id.play)
+        button = findViewById(R.id.button10)
 
         mDBHelper = DatabaseHelper(this)
 
@@ -59,13 +64,13 @@ class BioPage : AppCompatActivity() {
         MTB(textView6)
         name(textView)
 
+        button.setOnClickListener()
+        {
+            finish()
+        }
     }
 
-    fun Main(view: View)
-    {
-        val main = Intent(this, MainPage::class.java)
-        startActivity(main);
-    }
+
 
     fun Attr(view: View)
     {
@@ -90,8 +95,45 @@ class BioPage : AppCompatActivity() {
         }
         cursor.close();
 
-        textView6.setText(descript)
-    }
+            textView6.setText(descript)
+            textView6.setMovementMethod(ScrollingMovementMethod())
+
+            val mediaPlayer:MediaPlayer = MediaPlayer.create(this, R.raw.mtbio)
+
+            seekBar2.progress = 0
+            seekBar2.max = mediaPlayer.duration
+
+            imageButton.setOnClickListener{
+                if(!mediaPlayer.isPlaying)
+                {
+                    mediaPlayer.start()
+                    imageButton.setImageResource(R.drawable.ic_baseline_pause_24)
+                }else{
+                    mediaPlayer.pause()
+                    imageButton.setImageResource(R.drawable.ic_baseline_play_arrow_24)
+                }
+            }
+
+            seekBar2.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+                override fun onProgressChanged(p0: SeekBar?, pos: Int, changed: Boolean) {
+                    if(changed) {
+                        mediaPlayer.seekTo(pos) } }
+
+                override fun onStartTrackingTouch(p0: SeekBar?) {}
+
+                override fun onStopTrackingTouch(p0: SeekBar?) {}
+            })
+
+            runnable = Runnable {
+                seekBar2.progress = mediaPlayer.currentPosition
+                handler.postDelayed(runnable, 1000)
+            }
+            handler.postDelayed(runnable, 1000)
+            mediaPlayer.setOnCompletionListener {
+                imageButton.setImageResource(R.drawable.ic_baseline_play_arrow_24)
+                seekBar2.progress = 0
+            }
+        }
 
 
     fun name(view: View) {
@@ -112,10 +154,5 @@ class BioPage : AppCompatActivity() {
         textView.setText(descript2)
     }
 
-    fun Audio2(view: View)
-    {
-        val audio2: MediaPlayer = MediaPlayer.create(this@BioPage, R.raw.mtbio)
-        audio2.start()
-    }
 
 }

@@ -1,6 +1,7 @@
 package com.example.nir
 
 //import androidx.databinding.tool.store.Location
+
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.Activity
@@ -9,10 +10,12 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.webkit.*
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.yandex.mapkit.GeoObjectCollection
 import com.yandex.mapkit.MapKit
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
@@ -25,25 +28,11 @@ import com.yandex.mapkit.search.SearchManager
 class MapPage : AppCompatActivity () {
 
     lateinit var mapview: MapView
-    lateinit var locationmapkit: MapKit
-    lateinit var searchEdit: EditText
-    lateinit var searchManager: SearchManager
-    lateinit var searchSession: com.yandex.mapkit.search.Session
     private lateinit var webView: WebView
+    private lateinit var button: Button
 
-    private val REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124
-    private val webViewPreviousState = 0
-    private val PAGE_STARTED = 0x1
-    private val PAGE_REDIRECTED = 0x2
-    private val rootView: CoordinatorLayout? = null
-
-    private var currentLocation: Location? = null
     lateinit var locationManager: LocationManager
 
-
-    //private fun submitQuery(query:String)
-    // {searchSession = searchManager.submit(query,VisibleRegionUtils.toPolygon(mapview.map.visibleRegion), SearchOptions(), this)
-    // }
 
 
     @SuppressLint("ServiceCast")
@@ -55,25 +44,14 @@ class MapPage : AppCompatActivity () {
         setContentView(R.layout.activity_map_page)
         mapview = findViewById<View>(R.id.mapview) as MapView
         webView = findViewById<View>(R.id.webView) as WebView
-        /*mapview!!.map.move(
-            CameraPosition(Point(54.513845, 36.261215), 9.0f, 0.0f, 0.0f),
-            Animation(Animation.Type.SMOOTH, 0F),
-            null)*/
-        var mapKit: MapKit = MapKitFactory.getInstance()
-        //Location()
-        //var locationmapkit = mapKit.createUserLocationLayer(mapview.mapWindow)
-        //locationmapkit.isVisible = true
-        //locationmapkit.setObjectListener(this)
-        SearchFactory.initialize(this)
-        //searchManager = SearchFactory.getInstance().createSearchManager(SearchManagerType.COMBINED)
-        //mapview.map.addCameraListener(this)
-        //searchEdit = findViewById(R.id.search_edit)
-        /*searchEdit.setOnEditorActionListener {v, actionId, event ->
-            if(actionId == EditorInfo.IME_ACTION_SEARCH){
-                submitQuery(searchEdit.text.toString())
-            }
-            false
-        }*/
+        button = findViewById(R.id.button25)
+
+        button.setOnClickListener()
+        {
+            finish()
+        }
+
+        var mWebView: WebView
 
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
 
@@ -141,7 +119,6 @@ class MapPage : AppCompatActivity () {
         mapview!!.map.mapObjects.addPlacemark(ni)
 
 
-        //webView = WebView(this)
         val webView = findViewById<View>(R.id.webView) as WebView
         webView.settings.javaScriptEnabled = true // enable javascript
         webView.settings.databaseEnabled = true;
@@ -154,6 +131,22 @@ class MapPage : AppCompatActivity () {
         webSettings.setSupportZoom(true);
         webSettings.defaultTextEncodingName = "utf-8";
         webView.settings.pluginState = WebSettings.PluginState.ON
+        webSettings.setGeolocationDatabasePath(filesDir.path);
+
+
+        mWebView = findViewById<View>(R.id.webView) as WebView
+        // Brower niceties -- pinch / zoom, follow links in place
+        // Brower niceties -- pinch / zoom, follow links in place
+        mWebView.settings.javaScriptCanOpenWindowsAutomatically = true
+        mWebView.settings.builtInZoomControls = true
+        // Below required for geolocation
+        // Below required for geolocation
+        mWebView.webViewClient = GeoWebViewClient()
+        mWebView.settings.javaScriptEnabled = true
+        mWebView.settings.setGeolocationEnabled(true)
+        mWebView.webChromeClient = GeoWebChromeClient()
+        // Load yandex.ru
+        mWebView.loadUrl("https://yandex.ru/maps/10693/kaluga-oblast/?ll=35.445185%2C54.371800&z=8")
 
         webView.webViewClient = WebViewClient()
 
@@ -184,105 +177,54 @@ class MapPage : AppCompatActivity () {
                     req.url.toString())
             }
         }
-        webView.loadUrl("https://yandex.ru/maps/10693/kaluga-oblast/?ll=35.445185%2C54.371800&z=8")
+        //webView.loadUrl("https://yandex.ru/maps/10693/kaluga-oblast/?ll=35.445185%2C54.371800&z=8")
         webView.evaluateJavascript("showPoint('bl')", null);
         webView.evaluateJavascript("showPoint('pz')", null);
         webView.evaluateJavascript("showPoint('ni')", null);
 
-        webView.webViewClient = object : WebViewClient() {
-            override fun onPageFinished(view: WebView, url: String) {
-                super.onPageFinished(view, url)
 
-                // Добавляем клик-обработчик на кнопку геолокации
-                view.loadUrl("javascript:document.getElementById('geolocation-button').addEventListener('click', function() { "
-                        + "maps.geolocation.get({"
-                        + "    provider: 'auto',"
-                        + "    mapStateAutoApply: true"
-                        + "}).then(function(result) {"
-                        + "    var coords = result.geoObjects.get(0).geometry.getCoordinates();"
-                        + "    var lat = coords[0];"
-                        + "    var lon = coords[1];"
-                        + "    alert('Широта: ' + lat + ', Долгота: ' + lon);"
-                        + "}, function(error) {"
-                        + "    alert('Ошибка: ' + error.message);"
-                        + "});"
-                        + "});")
-            }
-
-        }
-
-        webView.webViewClient = object : WebViewClient() {
-            override fun onPageFinished(view: WebView, url: String) {
-                super.onPageFinished(view, url)
-
-                // вызвать функцию JavaScript, передав ей параметры
-                webView.evaluateJavascript("moveToAddress('Москва')", null)
-            }
-        }
+        webView.loadUrl("javascript:document.getElementById(' https://yandex.ru/captchapgrd').addEventListener('click', function() { "
+                + "maps.geolocation.get({"
+                + "    provider: 'auto',"
+                + "    mapStateAutoApply: true"
+                + "}).then(function(result) {"
+                + "    var coords = result.geoObjects.get(0).geometry.getCoordinates();"
+                + "    var lat = coords[0];"
+                + "    var lon = coords[1];"
+                + "    alert('Широта: ' + lat + ', Долгота: ' + lon);"
+                + "}, function(error) {"
+                + "    alert('Ошибка: ' + error.message);"
+                + "});"
+                + "});")
 
         //webView.loadUrl("https://yandex.ru/maps/10693/kaluga-oblast/?ll=35.445185%2C54.371800&z=8");
         //setContentView(webView);
 
 
-
-
-       /* var fusedLocationClient = LocationServices.getFusedLocationProviderClient(this@MapPage)
-
-        if (ActivityCompat.checkSelfPermission(this,
-                ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
-        ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
-        }
-        fusedLocationClient.lastLocation.addOnSuccessListener { location: android.location.Location? ->
-
-            Log.d(TAG, "getUserLocation:  $location.latitude")
-
-            Log.d(TAG, "getUserLocation:  $location.longitude")
-
-        }*/
     }
 
-        /*webView.addJavascriptInterface(MyJavascriptInterface(), "Android")
-        val script =
-            "navigator.geolocation.getCurrentPosition(function(position) { Android.onLocationChanged(position.coords.latitude, position.coords.longitude); });"
-        webView.loadUrl("https://yandex.ru/maps/10693/kaluga-oblast/?ll=35.445185%2C54.371800&z=8:$script")*/
 
-
-
-        // Регистрируем этот класс как прослушиватель местоположения
-
-        // Регистрируем этот класс как прослушиватель местоположения
-        //locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this)
-        //val REQUEST_CODE_PERMISSION_ACCESS_FINE_LOCATION = 100
-
-        /*ActivityCompat.requestPermissions(this@MapPage,
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-            REQUEST_CODE_PERMISSION_ACCESS_FINE_LOCATION)*/
-        //Location()
-
-        //askRuntimePermission()
-
-        //webView.Location()
-
-
-    /*private fun Location() {
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), 0)
-            return
+    /**
+     * WebViewClient subclass loads all hyperlinks in the existing WebView
+     */
+    class GeoWebViewClient : WebViewClient() {
+        override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+            // When user clicks a hyperlink, load in the existing WebView
+            view.loadUrl(url)
+            return true
         }
-    }*/
+    }
 
-
+    class GeoWebChromeClient : WebChromeClient() {
+        override fun onGeolocationPermissionsShowPrompt(
+            origin: String,
+            callback: GeolocationPermissions.Callback,
+        ) {
+            // Always grant permission since the app itself requires location
+            // permission and the user has therefore already granted it
+            callback.invoke(origin, true, false)
+        }
+    }
 
     override fun onStop() {
         mapview.onStop()
@@ -297,6 +239,7 @@ class MapPage : AppCompatActivity () {
     }
 
 }
+
 
 
 

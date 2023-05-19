@@ -4,8 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1345" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/drawable/b_bgr.xml" value="0.154" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/drawable/button_main.xml" value="0.1345" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/drawable/button_parks.xml" value="0.1" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/drawable/ic_baseline_pause_24.xml" value="0.154" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/drawable/ic_baseline_play_arrow_24.xml" value="0.154" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/drawable/ic_launcher_background.xml" value="0.141" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/drawable/search.xml" value="0.154" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/font/literata_bold.xml" value="0.27384615384615385" />
@@ -21,9 +24,10 @@
         <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/layout/activity_museums_page.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/layout/activity_nature_page.xml" value="0.2151268115942029" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/layout/activity_parks_page.xml" value="0.25" />
-        <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/layout/activity_place_page.xml" value="0.264" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/layout/activity_place_page.xml" value="0.2" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/layout/activity_templates_page.xml" value="0.264" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/layout/fragment_second.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/layout/list_item.xml" value="0.18515625" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/NIR/app/src/main/res/layout/templates.xml" value="0.253125" />
       </map>
     </option>
