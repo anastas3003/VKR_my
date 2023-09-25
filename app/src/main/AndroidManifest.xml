@@ -45,6 +45,9 @@
             android:name=".MuseumsPage"
             android:exported="false" />
         <activity
+            android:name=".Search"
+            android:exported="false" />
+        <activity
             android:name=".MainPage"
             android:exported="true" >
             android:label="@string/title_activity_main_page"

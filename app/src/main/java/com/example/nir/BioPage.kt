@@ -1,6 +1,5 @@
 package com.example.nir
 
-import android.content.Intent
 import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
@@ -22,13 +21,13 @@ class BioPage : AppCompatActivity() {
     private lateinit var imageButton: ImageButton
     private lateinit var button: Button
     private lateinit var runnable: Runnable
-    private var handler = Handler()
+    private lateinit var mediaPlayer2: MediaPlayer
+    private var handler2 = Handler()
 
     // Переменная для работы с БД
     private var mDBHelper: DatabaseHelper? = null
     private var mDb: SQLiteDatabase? = null
 
-    var mMediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +40,8 @@ class BioPage : AppCompatActivity() {
         button = findViewById(R.id.button10)
 
         mDBHelper = DatabaseHelper(this)
+
+        val buttonClicked20 = intent.getBooleanExtra("buttonClicked20", false)
 
         try {
             mDBHelper!!.openDataBase()
@@ -68,16 +69,12 @@ class BioPage : AppCompatActivity() {
         {
             finish()
         }
-    }
 
-
-
-    fun Attr(view: View)
-    {
-        val attr = Intent(this, AttrPage::class.java)
-        startActivity(attr)
+        if (buttonClicked20)
+        {}
 
     }
+
 
         fun MTB(view: View) {
 
@@ -98,18 +95,18 @@ class BioPage : AppCompatActivity() {
             textView6.setText(descript)
             textView6.setMovementMethod(ScrollingMovementMethod())
 
-            val mediaPlayer:MediaPlayer = MediaPlayer.create(this, R.raw.mtbio)
+            mediaPlayer2 = MediaPlayer.create(this, R.raw.mtbio)
 
             seekBar2.progress = 0
-            seekBar2.max = mediaPlayer.duration
+            seekBar2.max = mediaPlayer2.duration
 
             imageButton.setOnClickListener{
-                if(!mediaPlayer.isPlaying)
+                if(!mediaPlayer2.isPlaying)
                 {
-                    mediaPlayer.start()
+                    mediaPlayer2.start()
                     imageButton.setImageResource(R.drawable.ic_baseline_pause_24)
                 }else{
-                    mediaPlayer.pause()
+                    mediaPlayer2.pause()
                     imageButton.setImageResource(R.drawable.ic_baseline_play_arrow_24)
                 }
             }
@@ -117,7 +114,7 @@ class BioPage : AppCompatActivity() {
             seekBar2.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
                 override fun onProgressChanged(p0: SeekBar?, pos: Int, changed: Boolean) {
                     if(changed) {
-                        mediaPlayer.seekTo(pos) } }
+                        mediaPlayer2.seekTo(pos) } }
 
                 override fun onStartTrackingTouch(p0: SeekBar?) {}
 
@@ -125,11 +122,11 @@ class BioPage : AppCompatActivity() {
             })
 
             runnable = Runnable {
-                seekBar2.progress = mediaPlayer.currentPosition
-                handler.postDelayed(runnable, 1000)
+                seekBar2.progress = mediaPlayer2.currentPosition
+                handler2.postDelayed(runnable, 1000)
             }
-            handler.postDelayed(runnable, 1000)
-            mediaPlayer.setOnCompletionListener {
+            handler2.postDelayed(runnable, 1000)
+            mediaPlayer2.setOnCompletionListener {
                 imageButton.setImageResource(R.drawable.ic_baseline_play_arrow_24)
                 seekBar2.progress = 0
             }
@@ -153,6 +150,16 @@ class BioPage : AppCompatActivity() {
 
         textView.setText(descript2)
     }
+
+    /*override fun onStop()
+    {
+        super.onStop()
+        if(mediaPlayer2 != null)
+        {
+            mediaPlayer2!!.release()
+            mediaPlayer2 == null
+        }
+    }*/
 
 
 }

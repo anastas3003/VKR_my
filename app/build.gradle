@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'org.jetbrains.kotlin.android.extensions'
 }
 
 android {
@@ -46,6 +47,7 @@ android {
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
     }
+
 }
 
 dependencies {
@@ -58,12 +60,16 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'androidx.databinding:compilerCommon:3.2.0-alpha11'
+    implementation 'com.android.car.ui:car-ui-lib:2.4.0'
     //implementation 'androidx.databinding:databinding-compiler-common:8.0.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'com.yandex.android:maps.mobile:4.3.1-full'
     implementation 'com.google.guava:guava:26.0-android'
+    // cardview and recyclerview
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
 
     constraints {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
@@ -78,4 +84,6 @@ dependencies {
         implementation.exclude module: 'gauva-jdk5'
         all*.exclude group: 'com.google.guava', module: 'listenablefuture'
     }
+
+    apply plugin: 'kotlin-android-extensions'
 }

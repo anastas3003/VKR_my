@@ -22,16 +22,23 @@ class AttrPage : AppCompatActivity() {
     private lateinit var seekBar: SeekBar
     private lateinit var imageButton: ImageButton
     private lateinit var button: Button
+    private lateinit var mediaPlayer: MediaPlayer
     private lateinit var runnable: Runnable
     private var handler = Handler()
     private lateinit var imButton: ImageButton
+    private lateinit var cursor: Cursor
+    private lateinit var cursor2: Cursor
+    private lateinit var fb: Button
+    private lateinit var button11: Button
 
+
+    var descript: String = ""
+    var descript2: String = ""
+    var text: String = ""
 
     // Переменная для работы с БД
     private var mDBHelper: DatabaseHelper? = null
     private var mDb: SQLiteDatabase? = null
-
-    var mMediaPlayer: MediaPlayer? = null
 
     @SuppressLint("WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,13 +48,31 @@ class AttrPage : AppCompatActivity() {
         textView17 = findViewById(R.id.textView17)
         textView16 = findViewById(R.id.textView16)
         seekBar = findViewById(R.id.seekBar1)
+        button11 = findViewById(R.id.button11)
         imageButton = findViewById(R.id.play)
         button = findViewById(R.id.button12)
         imButton = findViewById(R.id.imageButton)
+        imButton.setBackgroundResource(R.color.transparent)
+        fb = findViewById(R.id.favBtn)
 
         val buttonClicked2 = intent.getBooleanExtra("buttonClicked2", false)
         val buttonClicked3 = intent.getBooleanExtra("buttonClicked3", false)
         val buttonClicked4 = intent.getBooleanExtra("buttonClicked4", false)
+        val buttonClicked5 = intent.getBooleanExtra("buttonClicked5", false)
+        val buttonClicked6 = intent.getBooleanExtra("buttonClicked6", false)
+        val buttonClicked7 = intent.getBooleanExtra("buttonClicked7", false)
+        val buttonClicked8 = intent.getBooleanExtra("buttonClicked8", false)
+        val buttonClicked9 = intent.getBooleanExtra("buttonClicked9", false)
+        val buttonClicked10 = intent.getBooleanExtra("buttonClicked10", false)
+        val buttonClicked11 = intent.getBooleanExtra("buttonClicked11", false)
+        val buttonClicked12 = intent.getBooleanExtra("buttonClicked12", false)
+        val buttonClicked13 = intent.getBooleanExtra("buttonClicked13", false)
+        val buttonClicked14 = intent.getBooleanExtra("buttonClicked14", false)
+        val buttonClicked15 = intent.getBooleanExtra("buttonClicked15", false)
+        val buttonClicked16 = intent.getBooleanExtra("buttonClicked16", false)
+        val buttonClicked17 = intent.getBooleanExtra("buttonClicked17", false)
+        val buttonClicked18 = intent.getBooleanExtra("buttonClicked18", false)
+        val buttonClicked19 = intent.getBooleanExtra("buttonClicked19", false)
 
         mDBHelper = DatabaseHelper(this)
 
@@ -70,48 +95,132 @@ class AttrPage : AppCompatActivity() {
         }
 
 
-
         button.setOnClickListener()
         {
             finish()
         }
 
-        /*imButton.setOnClickListener {
-            val newButton = Button(this)
-            newButton.text = "New Button"
-            newButton.setOnClickListener {
+        val pos = intent.getIntExtra("position", -1)
 
-            }
-            buttonList.add(newButton)
-            buttonContainer.addView(newButton)
-        }*/
+        //для памятников
+        if (buttonClicked2 || pos == 0)
+        {imageView7.setImageResource(R.drawable.pmt)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 22", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 22", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.pmta)}
+        else if (buttonClicked3 || pos == 1)
+        {imageView7.setImageResource(R.drawable.nk)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 23", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 23", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.nkl)
+            button11.visibility = View.INVISIBLE}
+        else if (buttonClicked4 || pos == 2)
+        {imageView7.setImageResource(R.drawable.pmk)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 24", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 24", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.pmik)
+            button11.visibility = View.INVISIBLE}
 
-        /*imButton.setOnClickListener()
-        {
-            val intent = Intent(this, PlacePage::class.java)
-            intent.putExtra("textButton", "Кнопка")
-            startActivity(intent)
-        }*/
+        /*//для усадеб
+        if (buttonClicked5 || course!=null)
+        {imageView7.setImageResource(R.drawable.ub)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 11", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 11", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.bl)}
+        else if (buttonClicked6 || course!=null&& course!=null)
+        {imageView7.setImageResource(R.drawable.pz)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 12", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 12", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.pz)}
+        else if (buttonClicked7 || course!=null)
+        {imageView7.setImageResource(R.drawable.nik)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 28", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 28", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.nik)}
+
+        //для музеев
+        if (buttonClicked8 || course!=null)
+        {imageView7.setImageResource(R.drawable.mkt)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 16", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 16", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.mts)}
+        else if (buttonClicked9 || course!=null)
+        {imageView7.setImageResource(R.drawable.zg)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 17", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 17", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.zg)}
+        else if (buttonClicked10 || course!=null)
+        {imageView7.setImageResource(R.drawable.tkg)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 18", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 18", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.tkg)}
+
+        //для прир. объектов
+        if (buttonClicked11 || course!=null)
+        {imageView7.setImageResource(R.drawable.vr)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 19", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 19", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.vr)}
+        else if (buttonClicked12 || course!=null)
+        {imageView7.setImageResource(R.drawable.kza)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 20", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 20", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.kz)}
+        else if (buttonClicked13 || course!=null)
+        {imageView7.setImageResource(R.drawable.kp)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 21", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 21", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.kp)}
+
+        //для парков
+        if (buttonClicked14 || course!=null)
+        {imageView7.setImageResource(R.drawable.pp)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 25", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 25", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.ppv)}
+        else if (buttonClicked15 || course!=null)
+        {imageView7.setImageResource(R.drawable.nk)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 26", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 26", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.nl)}
+        else if (buttonClicked16 || course!=null)
+        {imageView7.setImageResource(R.drawable.mk)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 27", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 27", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.npu)}
+
+        //для храмов
+        if (buttonClicked17 || course!=null)
+        {imageView7.setImageResource(R.drawable.pbm)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 13", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 13", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.pbm)}
+        else if (buttonClicked18 || course!=null)
+        {imageView7.setImageResource(R.drawable.spp)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 14", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 14", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.spp)}
+        else if (buttonClicked19 || course!=null)
+        {imageView7.setImageResource(R.drawable.tup)
+            cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 15", null)
+            cursor2 = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 15", null)
+            mediaPlayer = MediaPlayer.create(this, R.raw.tup)}*/
+
+        DSC(textView17)
+        title(textView16)
+        Audio(imageButton)
 
         imButton.setOnClickListener()
         {
             val intent = Intent(this, PlacePage::class.java)
-            intent.putExtra("buttonClicked", true)
+            intent.putExtra("text", text)
             startActivity(intent)
         }
 
-        if (buttonClicked2)
-            imageView7.setImageResource(R.drawable.pmt)
-        else if (buttonClicked3)
-            imageView7.setImageResource(R.drawable.nk)
-        else if (buttonClicked4)
-            imageView7.setImageResource(R.drawable.mk)
-
-
-        PMT(textView17)
-        title(textView16)
-        Audio(imageButton)
-
+        imButton.setOnClickListener()
+        {
+            val buttonClicked_sr = intent.getBooleanExtra("buttonClicked_sr", false)
+        }
     }
 
 
@@ -121,16 +230,11 @@ class AttrPage : AppCompatActivity() {
         startActivity(bio);
     }
 
+    fun DSC(view: View) {
+        cursor.moveToFirst()
+        val ColumnIndex = cursor.getColumnIndex("attr_des")
 
-        fun PMT(view: View) {
-
-            var descript: String = ""
-            val cursor: Cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 22", null)
-
-            cursor.moveToFirst()
-            val ColumnIndex = cursor.getColumnIndex("attr_des")
-
-            while (!cursor.isAfterLast()) {
+        while (!cursor.isAfterLast()) {
             descript += cursor.getString(ColumnIndex)
             cursor.moveToNext()
 
@@ -140,13 +244,10 @@ class AttrPage : AppCompatActivity() {
         textView17.setText(descript)
         textView17.setMovementMethod(ScrollingMovementMethod())
         //scrollView.addView(textView17)
-
-
     }
 
     fun Audio(button: ImageButton)
     {
-        val mediaPlayer:MediaPlayer = MediaPlayer.create(this, R.raw.pmta)
 
         seekBar.progress = 0
         seekBar.max = mediaPlayer.duration
@@ -186,9 +287,6 @@ class AttrPage : AppCompatActivity() {
 
     fun title(view: View) {
 
-        var descript2: String = ""
-        val cursor2: Cursor = mDb!!.rawQuery("SELECT * FROM Attr WHERE attr_id = 22", null)
-
         cursor2.moveToFirst()
         val ColumnIndex2 = cursor2.getColumnIndex("attr_name")
 
@@ -197,20 +295,17 @@ class AttrPage : AppCompatActivity() {
             cursor2.moveToNext() }
         cursor2.close();
 
-        textView16.setText(descript2) }
-
-
-    override fun onStop()
-    {
-        super.onStop()
-        if(mMediaPlayer != null)
-        {
-            mMediaPlayer!!.release()
-            mMediaPlayer = null
-        }
+        text = textView16.setText(descript2).toString()
     }
 
-    fun Place(view: View)
-    {}
 
+    /*override fun onStop()
+    {
+        super.onStop()
+        if(mediaPlayer != null)
+        {
+            mediaPlayer!!.release()
+            mediaPlayer == null
+        }
+    }*/
 }

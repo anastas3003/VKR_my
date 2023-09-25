@@ -160,12 +160,12 @@
 
     <Button
         android:id="@+id/button19"
-        android:layout_width="196dp"
+        android:layout_width="155dp"
         android:layout_height="58dp"
         android:backgroundTint="#D3FAFF"
         android:fontFamily="@font/literata_bold"
-        android:onClick="Places"
-        android:text="Мои места"
+        android:onClick="Srch"
+        android:text="Поиск"
         android:textColor="#013EB5"
         android:textSize="17sp"
         android:textStyle="bold"
@@ -179,7 +179,7 @@
 
     <Button
         android:id="@+id/button20"
-        android:layout_width="110dp"
+        android:layout_width="155dp"
         android:layout_height="58dp"
         android:backgroundTint="#D3FAFF"
         android:fontFamily="@font/literata_bold"

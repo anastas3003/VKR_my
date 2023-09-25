@@ -1,14 +1,11 @@
 package com.example.nir
 
+//import com.yandex.mapkit.MapKitFactory
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import android.database.SQLException;
-//import com.yandex.mapkit.MapKitFactory
-import java.io.IOException;
 
 
 class MainPage : AppCompatActivity() {
@@ -75,6 +72,10 @@ class MainPage : AppCompatActivity() {
         startActivity(map);
     }
 
-
+    fun Srch(view: View)
+    {
+        val sr = Intent(this, Search::class.java)
+        startActivity(sr);
+    }
 
 }

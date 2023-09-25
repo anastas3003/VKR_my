@@ -5,32 +5,24 @@ package com.example.nir
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.app.Activity
+import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.webkit.*
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.coordinatorlayout.widget.CoordinatorLayout
-import com.yandex.mapkit.GeoObjectCollection
-import com.yandex.mapkit.MapKit
+import androidx.core.app.ActivityCompat
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
-import com.yandex.mapkit.location.Location
 import com.yandex.mapkit.mapview.MapView
-import com.yandex.mapkit.search.SearchFactory
-import com.yandex.mapkit.search.SearchManager
 
 
 class MapPage : AppCompatActivity () {
 
     lateinit var mapview: MapView
     private lateinit var webView: WebView
-    private lateinit var button: Button
-
     lateinit var locationManager: LocationManager
 
 
@@ -42,14 +34,22 @@ class MapPage : AppCompatActivity () {
         MapKitFactory.initialize(this);
 
         setContentView(R.layout.activity_map_page)
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ){
+            val permissions = arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION,android.Manifest.permission.ACCESS_COARSE_LOCATION)
+            ActivityCompat.requestPermissions(this, permissions,0)
+        }
+
         mapview = findViewById<View>(R.id.mapview) as MapView
         webView = findViewById<View>(R.id.webView) as WebView
-        button = findViewById(R.id.button25)
 
-        button.setOnClickListener()
-        {
-            finish()
-        }
 
         var mWebView: WebView
 
@@ -147,6 +147,8 @@ class MapPage : AppCompatActivity () {
         mWebView.webChromeClient = GeoWebChromeClient()
         // Load yandex.ru
         mWebView.loadUrl("https://yandex.ru/maps/10693/kaluga-oblast/?ll=35.445185%2C54.371800&z=8")
+       // mWebView.addJavascriptInterface(MapMarkerInterface(), "markerInterface")
+       // mWebView.loadUrl("javascript:markerInterface.addMarker(55.75, 37.61)")
 
         webView.webViewClient = WebViewClient()
 
@@ -177,13 +179,14 @@ class MapPage : AppCompatActivity () {
                     req.url.toString())
             }
         }
-        //webView.loadUrl("https://yandex.ru/maps/10693/kaluga-oblast/?ll=35.445185%2C54.371800&z=8")
+        //webView.loadUrl("https://yandex.ru/maps/10693/kaluga-oblast/?ll=35.445185%2C54.371800&z=8"&&)
         webView.evaluateJavascript("showPoint('bl')", null);
         webView.evaluateJavascript("showPoint('pz')", null);
         webView.evaluateJavascript("showPoint('ni')", null);
+        // Создадим объекты на основе JSON-описания геометрий.
 
 
-        webView.loadUrl("javascript:document.getElementById(' https://yandex.ru/captchapgrd').addEventListener('click', function() { "
+        /*webView.loadUrl("javascript:document.getElementById(' https://yandex.ru/captchapgrd').addEventListener('click', function() { "
                 + "maps.geolocation.get({"
                 + "    provider: 'auto',"
                 + "    mapStateAutoApply: true"
@@ -195,12 +198,14 @@ class MapPage : AppCompatActivity () {
                 + "}, function(error) {"
                 + "    alert('Ошибка: ' + error.message);"
                 + "});"
-                + "});")
+                + "});")*/
 
         //webView.loadUrl("https://yandex.ru/maps/10693/kaluga-oblast/?ll=35.445185%2C54.371800&z=8");
         //setContentView(webView);
 
-
+        //mWebView.loadUrl("javascript:ymaps.ready(function () {var myMap = new ymaps.Map('map', {...});" +
+                //"myMap.geoObjects.add(new ymaps.Placemark([55.76, 37.64], { hintContent: 'Москва!', balloonContent: 'Столица России' }));" +
+                //"})"
     }
 
 
@@ -238,7 +243,17 @@ class MapPage : AppCompatActivity () {
         mapview.onStart()
     }
 
+
 }
+
+/*class MapMarkerInterface() {
+    @JavascriptInterface
+    fun addMarker(lat: Double, lng: Double) {
+        mWebView.post {
+        mWebView.loadUrl("javascript:addMarker($lat, $lng)")
+        }
+    }
+}*/
 
 
 

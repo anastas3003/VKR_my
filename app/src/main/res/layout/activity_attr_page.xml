@@ -94,19 +94,6 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/museum1" />
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="Place"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.259"
-        app:srcCompat="@drawable/free_icon_heart_simple_shape_silhouette_32557_2" />
-
     <LinearLayout
         android:layout_width="67dp"
         android:layout_height="57dp"
@@ -136,11 +123,26 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.781"
+        app:layout_constraintHorizontal_bias="0.952"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.259"
+        app:layout_constraintVertical_bias="0.699"
         app:srcCompat="@drawable/free_icon_heart_simple_shape_silhouette_32557_2" />
+
+    <Button
+        android:id="@+id/favBtn"
+        android:layout_width="49dp"
+        android:layout_height="46dp"
+        android:background="@drawable/ic_baseline_favorite_24"
+        app:backgroundTint="#E30000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.252"
+        app:srcCompat="@drawable/ic_baseline_favorite_24"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
